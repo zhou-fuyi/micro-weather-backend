@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/micro_weather_db_v100
+    username: postgres
+    password: gis@4490
+    driver-class-name: org.postgresql.Driver
+
+micro-weather:
+  wechat:
+    app-id: ${APP-ID}
+    secret: ${SECRET}
+  poster:
+    directory: /home/fuyi/weather/tmp/
+
+logging:
+  level:
+    org.fuyi.weather.infra.repository: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
