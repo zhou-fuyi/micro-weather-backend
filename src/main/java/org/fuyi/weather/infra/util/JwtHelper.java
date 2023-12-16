@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Jwt工具类
@@ -25,13 +26,13 @@ public class JwtHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtHelper.class);
 
-    private static final String SECRET = "_fu-yi.weather_secret=+";
+    private static final String SECRET = "_micro.weather_secret=+";
 
     private static final Long EXPIRED_TIME = 7 * 24 * 60 * 60 * 1000L;
 
-    public static final String CLAIM_USER_ID = "user_id";
+    public static final String CLAIM_USER_ID = "subject_id";
 
-    public static final String CLAIM_USER_NAME = "username";
+    public static final String CLAIM_USER_NAME = "subject_name";
 
     public static final String CLAIM_SUPPORT = "support";
 
@@ -60,22 +61,20 @@ public class JwtHelper {
      * 生成jwt签名
      * @author zhoujian
      * @date 17:18 2020-06-15
-     * @param userId 账户id
-     * @param username 账户名称
+     * @param subjectId 账户id
+     * @param subjectName 账户名称
      * @param support 当前账户是否可用
      * @param duration 过期时间 毫秒数
      * @return java.lang.String
      **/
-    private static String generateToken(Long userId, String username, boolean support, Long duration){
-        if (duration != null){
-            duration += EXPIRED_TIME;
-        }else {
+    private static String generateToken(Long subjectId, String subjectName, boolean support, Long duration){
+        if (Objects.isNull(duration)){
             duration = EXPIRED_TIME;
         }
         Algorithm algorithm = getAlgorithm(SECRET);
         String token = JWT.create()
-                .withClaim(CLAIM_USER_ID, userId)
-                .withClaim(CLAIM_USER_NAME, username)
+                .withClaim(CLAIM_USER_ID, subjectId)
+                .withClaim(CLAIM_USER_NAME, subjectName)
                 .withClaim(CLAIM_SUPPORT, support)
                 .withExpiresAt(new Date(System.currentTimeMillis() + duration))
                 .sign(algorithm);
@@ -116,12 +115,12 @@ public class JwtHelper {
      * @param token
      * @return java.lang.Long
      **/
-    public static Long decodeForUserId(String token){
+    public static Long decodeForSubjectId(String token){
         return verifyToken(token).getClaim(CLAIM_USER_ID).asLong();
     }
 
     public static void main(String[] args) {
         System.out.println(generateToken(1L, null, true, 10000L));
-        System.out.println(decodeForUserId("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDQ2NTc2ODgsInN1cHBvcnQiOnRydWUsInVzZXJuYW1lIjoiIn0.GCjYi3m0Nr8g3iKwqekIL16Cu36SXBc3-vduJGeTBAzDMEJwM3U_0YN7oAygkh0q2LLAhx3921LyanPsBI_9qA"));
+        System.out.println(decodeForSubjectId("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDQ2NTc2ODgsInN1cHBvcnQiOnRydWUsInVzZXJuYW1lIjoiIn0.GCjYi3m0Nr8g3iKwqekIL16Cu36SXBc3-vduJGeTBAzDMEJwM3U_0YN7oAygkh0q2LLAhx3921LyanPsBI_9qA"));
     }
 }

@@ -41,7 +41,7 @@ public class SubjectEntity extends AbstractBaseEntity {
     /**
      * 手机号
      */
-    private String phone_num;
+    private String phoneNum;
     /**
      * 头像地址
      */
