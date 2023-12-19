@@ -9,6 +9,10 @@ micro-weather:
   wechat:
     app-id: ${APP-ID}
     secret: ${SECRET}
+  data:
+    service:
+      public-key: ${DATA-SERVICE-PUBLIC-KEY}
+      secret-key: ${DATA-SERVICE-SECRET-KEY}
   poster:
     directory: /home/fuyi/weather/tmp/
 
