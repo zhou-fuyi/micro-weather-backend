@@ -1,11 +1,11 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.1.6'
+    id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'org.fuyi'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-RELEASE'
 
 java {
     sourceCompatibility = '17'
@@ -18,19 +18,24 @@ configurations {
 }
 
 repositories {
+    mavenLocal()
     maven {
         url 'https://repo.osgeo.org/repository/release/'
     }
     maven {
         url 'https://maven.aliyun.com/repository/public/'
     }
-    mavenLocal()
+    maven {
+        url 'https://maven.aliyun.com/repository/central'
+    }
     mavenCentral()
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-spatial
+    implementation 'org.hibernate:hibernate-spatial:6.3.1.Final'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.projectlombok:lombok'
