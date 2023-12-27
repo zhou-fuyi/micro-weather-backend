@@ -26,8 +26,8 @@ public class FollowCityController {
         this.followCityService = followCityService;
     }
 
-    @GetMapping("/follow")
-    public GenericFollowCityResponse follow(FollowCityCommand cityCommand){
+    @PostMapping("/follow")
+    public GenericFollowCityResponse follow(@RequestBody FollowCityCommand cityCommand){
         if (Objects.isNull(cityCommand.getSubjectId())){
             cityCommand.setSubjectId(JwtHelper.decodeForSubjectId(AuthContext.getAuth()));
         }

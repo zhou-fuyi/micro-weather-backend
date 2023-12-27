@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
 import org.fuyi.weather.infra.common.entity.AbstractBaseEntity;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
 
@@ -60,7 +62,9 @@ public class FollowCityEntity extends AbstractBaseEntity {
     /**
      * 记录的创建时间
      */
+    @CreationTimestamp
     private Timestamp createTime;
 
+    @UpdateTimestamp
     private Timestamp updateTime;
 }

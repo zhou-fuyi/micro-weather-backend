@@ -3,6 +3,8 @@ package org.fuyi.weather.app.dto;
 import lombok.*;
 import org.fuyi.weather.infra.common.dto.AbstractBaseDto;
 
+import static org.fuyi.weather.domain.entity.FollowCityEntity.FOCUS_STATE;
+
 /**
  * @author: <a href="mailto:thread.zhou@gmail.com">Fuyi</a>
  * @time: 2022/2/5 下午7:22
@@ -46,4 +48,13 @@ public class FollowCityDto extends AbstractBaseDto {
      * Focus（关注状态）
      */
     private String state;
+
+    private Boolean followed;
+
+    public Boolean getFollowed() {
+        if (FOCUS_STATE.equals(state)){
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
 }

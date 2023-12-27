@@ -14,7 +14,10 @@ micro-weather:
       public-key: ${DATA-SERVICE-PUBLIC-KEY}
       secret-key: ${DATA-SERVICE-SECRET-KEY}
   poster:
-    directory: /home/fuyi/weather/tmp/
+    directory: /tmp/micro-weather/data/poster/
+    key: ${POSTER-KEY}
+    api: ${POSTER-API-TEMPLATE}
+    proxy: ${POSTER-PROXY}
 
 logging:
   level:
