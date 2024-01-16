@@ -148,8 +148,16 @@ public class WeatherPoster {
         // 绘制AQI
         baseGraphics.setFont(new Font(null, Font.PLAIN, 36));
         baseGraphics.setColor(new Color(aqiColor[0], aqiColor[1], aqiColor[2]));
-        baseGraphics.drawRoundRect(830, 1436, 162, 50, 20, 20);
-        baseGraphics.drawString("AQI " + aqi, aqi.length() >= 2 ? 840 : 860, 1474);
+        int aqiLeftIndex = 860;
+        if (aqi.length() <= 2) {
+            aqiLeftIndex = 840;
+            baseGraphics.drawRoundRect(830, 1436, 162, 50, 20, 20);
+        }
+        if (aqi.length() > 2 && aqi.length() <= 4) {
+            aqiLeftIndex = 805;
+            baseGraphics.drawRoundRect(795, 1436, 232, 50, 20, 20);
+        }
+        baseGraphics.drawString("AQI " + aqi, aqiLeftIndex, 1474);
 
 
         baseGraphics.setFont(new Font(null, Font.BOLD, 30));
