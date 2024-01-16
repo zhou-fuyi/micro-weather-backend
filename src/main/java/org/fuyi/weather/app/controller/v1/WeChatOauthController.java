@@ -1,5 +1,6 @@
 package org.fuyi.weather.app.controller.v1;
 
+import org.fuyi.weather.app.dto.WeChatOauthCheckResponse;
 import org.fuyi.weather.app.dto.WeChatOauthResponse;
 import org.fuyi.weather.app.dto.qce.WeChatOauthEvent;
 import org.fuyi.weather.app.eventhandler.WeChatOauthEventHandler;
@@ -25,5 +26,10 @@ public class WeChatOauthController {
     @GetMapping("/we_chat")
     public WeChatOauthResponse weChatOauth(WeChatOauthEvent event){
         return new WeChatOauthResponse(eventHandler.forSession(event));
+    }
+
+    @GetMapping("/check")
+    public WeChatOauthCheckResponse weChatOauthCheck(){
+        return new WeChatOauthCheckResponse(eventHandler.forCheck());
     }
 }

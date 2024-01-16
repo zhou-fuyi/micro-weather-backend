@@ -121,6 +121,8 @@ public class JwtHelper {
 
     public static void main(String[] args) {
         System.out.println(generateToken(1L, null, true, 10000L));
-        System.out.println(decodeForSubjectId("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDQ2NTc2ODgsInN1cHBvcnQiOnRydWUsInVzZXJuYW1lIjoiIn0.GCjYi3m0Nr8g3iKwqekIL16Cu36SXBc3-vduJGeTBAzDMEJwM3U_0YN7oAygkh0q2LLAhx3921LyanPsBI_9qA"));
+        DecodedJWT decodedJWT = verifyToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWJqZWN0X2lkIjoxLCJleHAiOjE3MDQ5NjQxMTgsInN1cHBvcnQiOnRydWV9.Swu6U6_2RcZKHi5hBv0NAPMR37oCtfQqigKEJ6qJojzeA8a5m4Es4NsUt4EjjICc1b8jg8wGZMEnbj3_qxqT9w");
+        System.out.println(decodedJWT);
+//        System.out.println(decodeForSubjectId("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDQ2NTc2ODgsInN1cHBvcnQiOnRydWUsInVzZXJuYW1lIjoiIn0.GCjYi3m0Nr8g3iKwqekIL16Cu36SXBc3-vduJGeTBAzDMEJwM3U_0YN7oAygkh0q2LLAhx3921LyanPsBI_9qA"));
     }
 }

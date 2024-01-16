@@ -2,15 +2,20 @@ package org.fuyi.weather.app.eventhandler;
 
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.fuyi.weather.app.dto.OAuthCheckResponseDto;
 import org.fuyi.weather.app.dto.OAuthResponseDto;
 import org.fuyi.weather.app.dto.UserInfoDto;
 import org.fuyi.weather.app.dto.qce.UserInfoCommand;
 import org.fuyi.weather.app.dto.qce.WeChatOauthEvent;
 import org.fuyi.weather.app.service.UserInfoService;
+import org.fuyi.weather.infra.common.api.ResultCode;
+import org.fuyi.weather.infra.common.context.AuthContext;
+import org.fuyi.weather.infra.common.exception.PermissionDeniedException;
 import org.fuyi.weather.infra.common.exception.ServiceException;
 import org.fuyi.weather.infra.util.JwtHelper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Objects;
@@ -64,6 +69,19 @@ public class WeChatOauthEventHandler {
         }
         String auth_token = JwtHelper.generateToken(userInfo.getId(), DEFAULT_DURATION);
         return OAuthResponseDto.builder().auth_token(auth_token).build();
+    }
+
+    public OAuthCheckResponseDto forCheck(){
+        String authToken = AuthContext.getAuth();
+        log.info("current auth_token is: " + authToken);
+        if (!StringUtils.hasText(authToken)){
+            throw new PermissionDeniedException(ResultCode.INVALID_TOKEN, "Can not find token from request header.");
+        }
+        if (Objects.isNull(JwtHelper.verifyToken(authToken))){
+            throw new PermissionDeniedException(ResultCode.INVALID_TOKEN);
+        }
+        log.info("Token verification successful.");
+        return new OAuthCheckResponseDto(authToken, Boolean.FALSE, Boolean.FALSE);
     }
 
     static class InternalResponseEntity {
