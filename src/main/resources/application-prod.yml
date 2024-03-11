@@ -1,23 +1,23 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${POSTGRES-HOST}:${POSTGRES-PORT}/micro_weather_db_v100
-    username: ${POSTGRES-USERNAME:postgres}
-    password: ${POSTGRES-SECRET}
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/micro_weather_db_v100
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_SECRET}
     driver-class-name: org.postgresql.Driver
 
 micro-weather:
   wechat:
-    app-id: ${WECHAT-APP-ID}
-    secret: ${WECHAT-SECRET}
+    app-id: ${WECHAT_APP_ID}
+    secret: ${WECHAT_SECRET}
   data:
     service:
-      public-key: ${WEATHER-SERVICE-PUBLIC-KEY}
-      secret-key: ${WEATHER-SERVICE-SECRET-KEY}
+      public-key: ${WEATHER_SERVICE_PUBLIC_KEY}
+      secret-key: ${WEATHER_SERVICE_SECRET_KEY}
   poster:
-    directory: ${POSTER-CACHE-DIR:/tmp/micro-weather/data/poster/}
-    key: ${POSTER-KEY}
-    api: ${POSTER-API-TEMPLATE}
-    proxy: ${POSTER-PROXY}
+    directory: ${POSTER_CACHE_DIR:/tmp/micro-weather/data/poster/}
+    key: ${POSTER_KEY}
+    api: ${POSTER_API_TEMPLATE}
+    proxy: ${POSTER_PROXY}
 
 logging:
   level:

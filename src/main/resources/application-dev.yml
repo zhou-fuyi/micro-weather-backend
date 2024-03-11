@@ -7,17 +7,17 @@ spring:
 
 micro-weather:
   wechat:
-    app-id: ${WECHAT-APP-ID}
-    secret: ${WECHAT-SECRET}
+    app-id: ${WECHAT_APP_ID}
+    secret: ${WECHAT_SECRET}
   data:
     service:
-      public-key: ${WEATHER-SERVICE-PUBLIC-KEY}
-      secret-key: ${WEATHER-SERVICE-SECRET-KEY}
+      public-key: ${WEATHER_SERVICE_PUBLIC_KEY}
+      secret-key: ${WEATHER_SERVICE_SECRET_KEY}
   poster:
     directory: /tmp/micro-weather/data/poster/
-    key: ${POSTER-KEY}
-    api: ${POSTER-API-TEMPLATE}
-    proxy: ${POSTER-PROXY}
+    key: ${POSTER_KEY}
+    api: ${POSTER_API_TEMPLATE}
+    proxy: ${POSTER_PROXY}
 
 logging:
   level:
