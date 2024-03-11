@@ -30,4 +30,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: registry.cn-hangzhou.aliyuncs.com/fuyi-atlas/micro-weather:latest
+          tags: registry.cn-hangzhou.aliyuncs.com/fuyi-atlas/micro-weather-backend:latest
